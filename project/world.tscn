@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6qvoucnq1bsy"]
+[gd_scene load_steps=8 format=3 uid="uid://b6qvoucnq1bsy"]
 
 [ext_resource type="PackedScene" uid="uid://b8sxbmveohcii" path="res://bird/bird.tscn" id="1_3rmlg"]
 [ext_resource type="Script" path="res://world.gd" id="1_si5bc"]
@@ -15,6 +15,9 @@ background_mode = 2
 sky = SubResource("Sky_xtj6w")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig830"]
+albedo_color = Color(0.146572, 0.334496, 0.176964, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ayuak"]
 size = Vector3(100, 1, 100)
@@ -34,6 +37,7 @@ environment = SubResource("Environment_45ure")
 [node name="Land" type="CSGBox3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33439, 0)
 size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_ig830")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33439, 0)
