@@ -8,6 +8,7 @@ var _displayed_score := 0.0:
 		_displayed_score = value
 		%ScoreLabel.text = "Score: %d" % ceilf(_displayed_score)
 
+
 func _physics_process(_delta: float) -> void:
 	_displayed_score = lerp(_displayed_score, score, 0.2)
 	if Input.is_action_just_pressed("launch"):
