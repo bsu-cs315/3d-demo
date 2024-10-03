@@ -50,11 +50,18 @@ shape = SubResource("BoxShape3D_ayuak")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33439, 7.22075)
 collision_layer = 2
 collision_mask = 5
+contact_monitor = true
+max_contacts_reported = 4
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.1927, 1.15133, 0)
 
-[node name="Target" type="StaticBody3D" parent="."]
+[node name="ScoreLabel" type="Label3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03695e-07, 0.29341, -2.37226)
+text = "Score: 0"
+
+[node name="Target" type="StaticBody3D" parent="." groups=["targets"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.11153)
 collision_layer = 4
 collision_mask = 0
@@ -64,3 +71,5 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
 shape = SubResource("BoxShape3D_1meqh")
+
+[connection signal="body_entered" from="Bird" to="." method="_on_bird_body_entered"]
