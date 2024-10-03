@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6qvoucnq1bsy"]
+[gd_scene load_steps=7 format=3 uid="uid://b6qvoucnq1bsy"]
 
-[ext_resource type="PackedScene" uid="uid://dn2tdps4hrcxc" path="res://character/player_character.tscn" id="1_4gyn4"]
+[ext_resource type="PackedScene" uid="uid://b8sxbmveohcii" path="res://bird/bird.tscn" id="1_3rmlg"]
+[ext_resource type="Script" path="res://world.gd" id="1_si5bc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fq1t8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -19,6 +20,7 @@ glow_enabled = true
 size = Vector3(100, 1, 100)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_si5bc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -27,23 +29,18 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_45ure")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_4gyn4")]
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="Land" type="CSGBox3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33439, 0)
 size = Vector3(100, 1, 100)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="StaticBody3D/Land"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19604, 0, 0.0934932)
-operation = 2
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="StaticBody3D/Land"]
-transform = Transform3D(1, 0, 0, 0, -0.315401, -0.948959, 0, 0.948959, -0.315401, 0, 0, -9.47279)
-inner_radius = 1.447
-outer_radius = 2.894
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33439, 0)
 shape = SubResource("BoxShape3D_ayuak")
+
+[node name="Bird" parent="." instance=ExtResource("1_3rmlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33439, 7.22075)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.1927, 1.15133, 0)
